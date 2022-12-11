@@ -16,3 +16,4 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug #logger를 통해 찍음
+    org.hibernate.type: trace #?,? 등 쿼리파라미터에 대입되는 값들을 로그로 표시해줌(BasicBinder) -> P6SPY 등 라이브러리 사용하면 더 가독성 좋게 변화
