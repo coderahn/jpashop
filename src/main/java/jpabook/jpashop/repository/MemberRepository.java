@@ -1,6 +1,7 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,11 +11,12 @@ import javax.persistence.PersistenceUnit;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor //스프링부트에서는 @PersistenceContext대신 @Autowired 가능 -> 이거로 대체 가능
 public class MemberRepository {
     //스프링이 엔티티매니저 만들어 injection 해주는 어노테이션
-    @PersistenceContext
-    private EntityManager em;
-    
+    //@PersistenceContext
+    private final EntityManager em;
+
     //emf 직접 주입받고싶을 때 어노테이션
     @PersistenceUnit
     private EntityManagerFactory emf;
