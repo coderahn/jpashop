@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test #h2DB안켜도 동작함 -> 사실 spring:하위 다 주석처도 돌아감. 별도 db설정없으면 메모리모드로돌림(스프링부트 전용)
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        #show_sql: true system.out으로 찍음
+        format_sql: true
+    database: h2
+
+logging:
+  level:
+    org.hibernate.SQL: debug #logger를 통해 찍음
+    org.hibernate.type: trace #?,? 등 쿼리파라미터에 대입되는 값들을 로그로 표시해줌(BasicBinder) -> P6SPY 등 라이브러리 사용하면 더 가독성 좋게 변화
