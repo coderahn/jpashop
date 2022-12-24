@@ -18,7 +18,7 @@ public class Address {
     }
 
     //Setter제거하고 생성자에서 모든 값을 초기화해서 변경 불가능한 클래스를 만들자자
-   public Address(String city, String stree, String zipcode) {
+   public Address(String city, String street, String zipcode) {
         this.city = city;
         this.street = street;
         this.zipcode = zipcode;
