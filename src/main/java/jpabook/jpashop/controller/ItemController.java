@@ -70,16 +70,26 @@ public class ItemController {
 
     //상품수정
     @PostMapping("items/{itemId}/edit")
-    public String updateItem(@PathVariable("itemId") String itemId, @ModelAttribute("form") BookForm bookForm) {
-        Book book = new Book();
-        book.setId(bookForm.getId());
-        book.setName(bookForm.getName());
-        book.setPrice(bookForm.getPrice());
-        book.setStockQuantity(bookForm.getStockQuantity());
-        book.setAuthor(bookForm.getAuthor());
-        book.setIsbn(bookForm.getIsbn());
+    public String updateItem(@PathVariable("itemId") Long itemId, @ModelAttribute("form") BookForm bookForm) {
+        //준영속 엔티티(JPA가 관리 X)
+//        Book book = new Book();
+//        book.setId(bookForm.getId());
+//        book.setName(bookForm.getName());
+//        book.setPrice(bookForm.getPrice());
+//        book.setStockQuantity(bookForm.getStockQuantity());
+//        book.setAuthor(bookForm.getAuthor());
+//        book.setIsbn(bookForm.getIsbn());
 
-        itemService.saveItem(book);
+        //준영속엔티티 업데이트방법
+        
+        //1.병합
+//        itemService.saveItem(book);
+
+        //실무에서는 위와같이 컨트롤러에서 어설프게 엔티티생성 안 좋음
+        //다음과같은 설계가 좋음
+        itemService.updateItem(itemId, bookForm.getName(), bookForm.getPrice(), bookForm.getStockQuantity());
+
+        //양이 많으면 DTO를 만들어서 넘기자
 
         return "redirect:/items";
     }
